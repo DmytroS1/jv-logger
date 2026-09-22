@@ -1,13 +1,13 @@
 package mate.academy;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import mate.academy.exception.AuthenticationException;
 import mate.academy.model.User;
 import mate.academy.service.AuthenticationService;
 import mate.academy.service.AuthenticationServiceImpl;
 import mate.academy.service.OrderService;
 import mate.academy.service.OrderServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
@@ -18,7 +18,11 @@ public class Main {
         try {
             user = authenticationService.login("bob", "1234");
         } catch (AuthenticationException e) {
-            logger.error("User cant login with entered params. Params: login={}, login "+ e.getMessage());
+            logger.error(
+                    "User can't login with entered params. Params: login={}, error={}",
+                    "login",
+                    e.getMessage()
+            );
             return;
         }
         OrderService orderService = new OrderServiceImpl();
